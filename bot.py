@@ -237,7 +237,7 @@ async def ban_in_universe(session, user_id, reason, duration_seconds, universe_i
     }
     restriction = {
         "active": True,
-        "privateReason": reason or "Reason not provided",
+        "privateReason": reason or "Discord report.",
         "displayReason": reason or "You have been banned from Murder Mystery 2. gg/kmm - Appeal",
         "excludeAltAccounts": False,
         "duration": "{}s".format(duration_seconds) if duration_seconds is not None else None,
