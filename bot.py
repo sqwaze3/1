@@ -500,7 +500,7 @@ async def infoban_command(interaction: discord.Interaction, username: str):
 
             start_time = game_join.get("startTime", "")
             duration = game_join.get("duration")
-            display_reason = game_join.get("displayReason", "")
+            display_reason = game_join.get("privateReason", "")
 
             if start_time:
                 try:
