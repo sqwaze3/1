@@ -385,13 +385,12 @@ async def unban_command(interaction: discord.Interaction, username: str):
         profile_url = "https://www.roblox.com/users/{}/profile".format(user_id)
         confirm_embed = discord.Embed(
             title="Unban confirmation",
-            description="Are you sure you want to unban [**{} (@{})**]({})?".format(display_name, fetched_username, profile_url),
+            description="Are you sure you want to unban [**{} (@{})**]({})?\n-# This action will expire in 30 seconds.".format(display_name, fetched_username, profile_url),
             color=0xFEE75C,
             timestamp=datetime.now(timezone.utc),
         )
         if avatar_url:
             confirm_embed.set_thumbnail(url=avatar_url)
-        confirm_embed.set_footer(text="This action will expire in 30 seconds.")
 
         view = ConfirmView("unban", interaction.user.id)
         await interaction.followup.send(embed=confirm_embed, view=view, ephemeral=True)
@@ -459,7 +458,7 @@ async def ban_command(
         profile_url = "https://www.roblox.com/users/{}/profile".format(uid_int)
         confirm_embed = discord.Embed(
             title="Ban confirmation",
-            description="Are you sure you want to ban [**{} (@{})**]({})?".format(display_name, fetched_username, profile_url),
+            description="Are you sure you want to ban [**{} (@{})**]({})?\n-# This action will expire in 30 seconds.".format(display_name, fetched_username, profile_url),
             color=0xFEE75C,
             timestamp=datetime.now(timezone.utc),
         )
@@ -469,7 +468,6 @@ async def ban_command(
             confirm_embed.add_field(name="Reason", value=reason, inline=False)
         if evidence:
             confirm_embed.add_field(name="Evidence", value=evidence, inline=False)
-        confirm_embed.set_footer(text="This action will expire in 30 seconds.")
 
         view = ConfirmView("ban", interaction.user.id)
         await interaction.followup.send(embed=confirm_embed, view=view, ephemeral=True)
