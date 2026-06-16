@@ -459,7 +459,7 @@ async def ban_command(
         profile_url = "https://www.roblox.com/users/{}/profile".format(uid_int)
         confirm_embed = discord.Embed(
             title="Ban confirmation",
-            description="Are you sure you want to permanently ban [**{} (@{})**]({})?".format(display_name, fetched_username, profile_url),
+            description="Are you sure you want to ban [**{} (@{})**]({})?".format(display_name, fetched_username, profile_url),
             color=0xFEE75C,
             timestamp=datetime.now(timezone.utc),
         )
