@@ -330,21 +330,22 @@ class ConfirmView(discord.ui.View):
             return False
         return True
 
-    async def disable_all(self, interaction):
-        for item in self.children:
-            item.disabled = True
-        await interaction.response.edit_message(view=self)
-
     @discord.ui.button(label="Confirm", style=discord.ButtonStyle.danger)
     async def confirm(self, interaction, button):
         self.confirmed = True
-        await self.disable_all(interaction)
+        for item in self.children:
+            item.disabled = True
+        await interaction.response.edit_message(view=self)
         self.stop()
 
     @discord.ui.button(label="Cancel", style=discord.ButtonStyle.secondary)
     async def cancel(self, interaction, button):
-        await self.disable_all(interaction)
-        await interaction.followup.send("{} cancelled.".format(self.action.capitalize()), ephemeral=True)
+        for item in self.children:
+            item.disabled = True
+        await interaction.response.edit_message(
+            content="{} cancelled.".format(self.action.capitalize()),
+            view=self,
+        )
         self.stop()
 
 
